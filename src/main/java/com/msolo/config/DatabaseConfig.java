@@ -38,7 +38,7 @@ public class DatabaseConfig {
         em.setDataSource(dataSource());
         em.setPackagesToScan(env.getRequiredProperty("db.entity.package"));
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setJpaProperties(getHibernateProperties1());
+        em.setJpaProperties(getHibernateProperties());
 
         return em;
     }
@@ -81,15 +81,5 @@ public class DatabaseConfig {
             throw new IllegalArgumentException("can't find 'hibernate.properties' in classpath!");
         }
     }
-    public Properties getHibernateProperties1() {
-               try {
-                        Properties properties = new Properties();
-                        InputStream is = getClass().getClassLoader().getResourceAsStream("hibernate.properties");
-                        properties.load(is);
 
-                                return properties;
-                    } catch (IOException e) {
-                        throw new IllegalArgumentException("Can't find 'hibernate.properties' in classpath!", e);
-                    }
-            }
 }
